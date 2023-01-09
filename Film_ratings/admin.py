@@ -21,11 +21,10 @@ class FilmAdmin (admin.ModelAdmin):
        
     fields = [
         'title',
-        #'slug'
+        #'slug',
         'description',
-        'director', 
-        'actors', 
-        'updated', 
+        'directors', 
+        'actors',  
         ]    
     list_display = ('title', 'count', 'avg',)
 
@@ -35,7 +34,7 @@ class RatingAdmin (admin.ModelAdmin):
         'film',
         'user',
         ]
-    list_display = ( 'rate','film', 'user')
+    list_display = ('film', 'user', 'rate')
 
 
 
