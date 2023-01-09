@@ -8,5 +8,6 @@ djangorestframework==3.14.0
 
 To start app : python manage.py runserver 
 
-Admin panel: http://127.0.0.1:8000/admin/ (l:admin123, h:admin123 )
+Admin panel: http://127.0.0.1:8000/admin/ (l:admin123, h:admin123)
+
 Api: http://127.0.0.1:8000/Film_ratings/api/
