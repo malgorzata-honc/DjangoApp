@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.utils.text import slugify
+from django.dispatch import receiver
+from django.db.models import signals
+
+from django.db.models.signals import post_save
+from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 #By default, Django gives each model an auto-incrementing primary key
 
@@ -27,7 +33,7 @@ class Film (models.Model):
     directors = models.ManyToManyField(Director)
     actors = models.ManyToManyField(Actor)
     created = models.DateTimeField('Date of Creation', auto_now_add=True)
-    updated = models.DateTimeField('Date of Update', null=True, blank=True)
+    updated = models.DateTimeField('Date of Update', auto_now=True)
     #slug = models.SlugField(max_length = 200)
     
     
@@ -51,6 +57,9 @@ class Film (models.Model):
     def __str__(self):
         return self.title
     
+#@receiver(signals.pre_save, sender=Film)
+#def populate_slug(sender, instance, **kwargs):
+#    instance.slug = slugify(instance.title)
 
 class Rating(models.Model):
     rate = models.IntegerField()
@@ -60,3 +69,7 @@ class Rating(models.Model):
     def __str__(self):
         return self.film + ' ' + self.user + ' ' + self.rate
     
+#@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+#def create_auth_token(sender, instance=None, created=False, **kwargs):
+#    if created:
+#        Token.objects.create(user=instance)    

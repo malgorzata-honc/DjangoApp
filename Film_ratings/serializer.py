@@ -1,6 +1,7 @@
 from .models import Actor, Director, Film, Rating
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from account.models import Account 
 
 class ActorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta: 
@@ -32,5 +33,5 @@ class RatingSerializer (serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Rating
-        fields = ['rate', 'film', 'user']        
+        fields = ['rate', 'film', 'user']       
 
